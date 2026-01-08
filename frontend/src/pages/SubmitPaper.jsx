@@ -2,6 +2,7 @@ import '../App.css'
 import { useState } from 'react'
 import { submitPaper } from '../api/paperApi'
 
+// Pagina pentru trimiterea unei lucrări la o conferință
 export default function SubmitPaper() {
   const [form, setForm] = useState({
     title: '',
@@ -11,12 +12,14 @@ export default function SubmitPaper() {
     authorId: ''
   })
 
+  // Funcția pentru trimiterea lucrării
   const submit = async () => {
     await submitPaper(form)
     alert('Paper submitted')
   }
 
   return (
+    // Pagina de trimitere a lucrării
     <div className="container card">
   <h2>Submit Paper</h2>
 

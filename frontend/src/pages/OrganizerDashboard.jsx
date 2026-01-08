@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react'
 import { getConferences, getConferencePapers } from '../api/conferenceApi'
 
+// Pagina pentru monitorizarea conferințelor și lucrărilor de către organizator
 export default function OrganizerDashboard() {
   const [conferences, setConferences] = useState([])
   const [papers, setPapers] = useState([])
 
   useEffect(() => {
+    // Încarcă conferințele la montarea componentei
     getConferences().then(res => setConferences(res.data))
   }, [])
 
   const loadPapers = async (id) => {
+    // Încarcă lucrările pentru conferința selectată
     const res = await getConferencePapers(id)
     setPapers(res.data.papers)
   }
 
   return (
+    // Pagina principală a dashboard-ului organizatorului
     <div>
       <h2>Organizer Dashboard</h2>
 

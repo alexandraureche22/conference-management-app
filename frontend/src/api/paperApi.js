@@ -1,5 +1,5 @@
 import api from './axios'
-
+// Lucrări
 export const getPapers = () => api.get('/papers')
 export const getPaper = (id) => api.get(`/papers/${id}`)
 export const submitPaper = (data) => api.post('/papers', data)

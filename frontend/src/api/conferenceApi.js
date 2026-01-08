@@ -1,5 +1,5 @@
 import api from './axios'
-
+// Conferințe
 export const getConferences = () => api.get('/conferences')
 export const getConference = (id) => api.get(`/conferences/${id}`)
 export const getConferencePapers = (id) => api.get(`/conferences/${id}/papers`)
