@@ -1,7 +1,10 @@
+// controllers/paperController.js
 const { Paper, Review, User } = require('../models')
 
+// Creeaza o lucrare si aloca automat 2 revieweri
 const createPaper = async (req, res) => {
   try {
+    // Extragem datele din corpul cererii
     const { title, abstract, fileUrl, conferenceId, authorId } = req.body
 
     // 1. Cream articolul
@@ -19,7 +22,7 @@ const createPaper = async (req, res) => {
       where: { role: 'REVIEWER' },
       limit: 2
     })
-
+    // Daca nu sunt destui revieweri
     if (reviewers.length < 2) {
       return res.status(400).json({
         message: 'Not enough reviewers available'
@@ -41,12 +44,13 @@ const createPaper = async (req, res) => {
         feedback: ''
       }
     ])
-
+    // Raspundem cu succes
     res.status(201).json({
       message: 'Paper submitted and reviewers auto-assigned',
       paperId: paper.id
     })
   } catch (err) {
+    // Eroare de server
     res.status(500).json({ error: err.message })
   }
 }
