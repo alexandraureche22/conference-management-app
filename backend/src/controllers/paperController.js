@@ -1,5 +1,9 @@
 // controllers/paperController.js
+<<<<<<< HEAD
 const { Paper, Review, User, Conference } = require('../models')
+=======
+const { Paper, Review, User } = require('../models')
+>>>>>>> f9d498c7ab122219e51236d9ebe1a69ca9ea3407
 
 // Creeaza o lucrare si aloca automat 2 revieweri
 const createPaper = async (req, res) => {
@@ -14,7 +18,11 @@ const createPaper = async (req, res) => {
       fileUrl,
       conferenceId,
       authorId,
+<<<<<<< HEAD
       status: 'SUBMITTED'
+=======
+      status: 'IN_REVIEW'
+>>>>>>> f9d498c7ab122219e51236d9ebe1a69ca9ea3407
     })
 
     // 2. Gasim 2 revieweri

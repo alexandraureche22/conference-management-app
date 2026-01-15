@@ -21,6 +21,7 @@ User.belongsToMany(Conference, {
 })
 // Relația one-to-many între Conference și Paper
 Conference.hasMany(Paper, {
+<<<<<<< HEAD
   foreignKey: 'conferenceId',
   as: 'papers'
 })
@@ -28,6 +29,13 @@ Conference.hasMany(Paper, {
 Paper.belongsTo(Conference, {
   foreignKey: 'conferenceId',
   as: 'conference'
+=======
+  foreignKey: 'conferenceId'
+})
+// Relația many-to-one între Paper și Conference
+Paper.belongsTo(Conference, {
+  foreignKey: 'conferenceId'
+>>>>>>> f9d498c7ab122219e51236d9ebe1a69ca9ea3407
 })
 // Relația one-to-many între User și Paper (autor și lucrări)
 User.hasMany(Paper, { foreignKey: 'authorId' })

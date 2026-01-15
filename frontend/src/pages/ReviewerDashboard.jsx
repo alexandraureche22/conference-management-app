@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+<<<<<<< HEAD
 import api from '../api/axios'
 import { updateReview } from '../api/reviewApi'
 
@@ -78,6 +79,32 @@ export default function ReviewerDashboard() {
           <button onClick={() => handleDecision(r.id, 'REJECT')}>
             Revise
           </button>
+=======
+import { getReviews, updateReview } from '../api/reviewApi'
+
+// Pagina pentru dashboard-ul recenzorului
+export default function ReviewerDashboard() {
+  const [reviews, setReviews] = useState([])
+
+  useEffect(() => {
+    // Încarcă recenziile la montarea componentei
+    getReviews().then(res => setReviews(res.data))
+  }, [])
+
+  const decide = (id, decision) => {
+    updateReview(id, { decision, feedback: 'OK' })
+  }
+
+  return (
+    // Pagina principală a dashboard-ului recenzorului
+    <div>
+      <h2>Reviewer Dashboard</h2>
+      {reviews.map(r => (
+        <div key={r.id}>
+          Review #{r.id}
+          <button onClick={() => decide(r.id, 'APPROVE')}>Approve</button>
+          <button onClick={() => decide(r.id, 'REJECT')}>Reject</button>
+>>>>>>> f9d498c7ab122219e51236d9ebe1a69ca9ea3407
         </div>
       ))}
     </div>

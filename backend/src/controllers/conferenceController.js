@@ -6,6 +6,7 @@ const { Conference, Paper, User, Review } = require('../models')
 //ENDPOINT: POST /conferences
 const createConference = async (req, res) => {
   try {
+<<<<<<< HEAD
     const { reviewerIds, ...conferenceData } = req.body
 
     if (!reviewerIds || reviewerIds.length < 3) {
@@ -41,13 +42,26 @@ const createConference = async (req, res) => {
 
     res.status(201).json(conference)
   } catch (err) {
+=======
+    // Creează o înregistrare nouă în tabela Conferences
+    // req.body conține datele trimise din frontend (title, description, dates etc.)
+    const conf = await Conference.create(req.body)
+    // Returnează conferința creată + status HTTP 201 (Created)
+    res.status(201).json(conf)
+  } catch (err) {
+    // Dacă apare o eroare (ex: date invalide, DB error)
+    // trimitem status 500 + mesajul erorii
+>>>>>>> f9d498c7ab122219e51236d9ebe1a69ca9ea3407
     res.status(500).json({ error: err.message })
   }
 }
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> f9d498c7ab122219e51236d9ebe1a69ca9ea3407
 // Returnează lista tuturor conferințelor
 // Endpoint: GET /conferences
 const getConferences = async (req, res) => {
@@ -104,12 +118,19 @@ const updateConference = async (req, res) => {
 // Endpoint: GET /conferences/:id/papers
 const getConferencePapers = async (req, res) => {
   try {
+<<<<<<< HEAD
     const { id } = req.params
 
+=======
+    // Extrage ID-ul conferinței din parametrii URL
+    const { id } = req.params
+    // Găsește conferința după ID și include lucrările, autorii și recenziile acestora
+>>>>>>> f9d498c7ab122219e51236d9ebe1a69ca9ea3407
     const conference = await Conference.findByPk(id, {
       include: [
         {
           model: Paper,
+<<<<<<< HEAD
           as: 'papers',
           include: [
             {
@@ -118,11 +139,23 @@ const getConferencePapers = async (req, res) => {
             },
             {
               model: Review
+=======
+          include: [
+            {
+              model: User,
+              attributes: ['id', 'name', 'email'],
+              foreignKey: 'authorId'
+            },
+            {
+              model: Review,
+              attributes: ['id', 'decision', 'feedback', 'reviewerId']
+>>>>>>> f9d498c7ab122219e51236d9ebe1a69ca9ea3407
             }
           ]
         }
       ]
     })
+<<<<<<< HEAD
 
     if (!conference) {
       return res.status(404).json({ message: 'Conference not found' })
@@ -134,12 +167,29 @@ const getConferencePapers = async (req, res) => {
       papers: conference.papers
     })
   } catch (err) {
+=======
+    // Dacă conferința nu este găsită, returnează 404
+    if (!conference) {
+      return res.status(404).json({ message: 'Conference not found' })
+    }
+    // Returnează ID-ul conferinței, titlul și lucrările asociate
+    res.json({
+      conferenceId: conference.id,
+      conferenceTitle: conference.title,
+      papers: conference.Papers
+    })
+  } catch (err) {
+    // Eroare de server
+>>>>>>> f9d498c7ab122219e51236d9ebe1a69ca9ea3407
     res.status(500).json({ error: err.message })
   }
 }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> f9d498c7ab122219e51236d9ebe1a69ca9ea3407
 //Exportă funcțiile pentru a fi folosite în rutele Express
 module.exports = {
   createConference,

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useEffect, useState } from 'react'
 import { getConferences } from '../api/conferenceApi'
 import { submitPaper } from '../api/paperApi'
@@ -121,5 +122,45 @@ export default function SubmitPaper() {
         <button type="submit">Submit Paper</button>
       </form>
     </div>
+=======
+import '../App.css'
+import { useState } from 'react'
+import { submitPaper } from '../api/paperApi'
+
+// Pagina pentru trimiterea unei lucrări la o conferință
+export default function SubmitPaper() {
+  const [form, setForm] = useState({
+    title: '',
+    abstract: '',
+    fileUrl: '',
+    conferenceId: '',
+    authorId: ''
+  })
+
+  // Funcția pentru trimiterea lucrării
+  const submit = async () => {
+    await submitPaper(form)
+    alert('Paper submitted')
+  }
+
+  return (
+    // Pagina de trimitere a lucrării
+    <div className="container card">
+  <h2>Submit Paper</h2>
+
+  {Object.keys(form).map(k => (
+    <input
+      key={k}
+      placeholder={k}
+      value={form[k]}
+      style={{ display: 'block', marginBottom: 10, width: '100%' }}
+      onChange={e => setForm({ ...form, [k]: e.target.value })}
+    />
+  ))}
+
+  <button onClick={submit}>Submit</button>
+</div>
+
+>>>>>>> f9d498c7ab122219e51236d9ebe1a69ca9ea3407
   )
 }

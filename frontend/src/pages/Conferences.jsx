@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { getConferences } from '../api/conferenceApi'
 import ConferenceCard from '../components/ConferenceCard'
 
+<<<<<<< HEAD
 export default function Conferences() {
   const [conferences, setConferences] = useState([])
   const [error, setError] = useState('')
@@ -36,6 +37,22 @@ export default function Conferences() {
 
       {conferences.map(conf => (
         <ConferenceCard key={conf.id} conference={conf} />
+=======
+// Pagina pentru afișarea listei de conferințe disponibile
+export default function Conferences() {
+  const [conferences, setConferences] = useState([])
+
+  // Încarcă conferințele la montarea componentei
+  useEffect(() => {
+    getConferences().then(res => setConferences(res.data))
+  }, [])
+
+  return (
+    <div>
+      <h2>Conferences</h2>
+      {conferences.map(c => (
+        <ConferenceCard key={c.id} conference={c} />
+>>>>>>> f9d498c7ab122219e51236d9ebe1a69ca9ea3407
       ))}
     </div>
   )
